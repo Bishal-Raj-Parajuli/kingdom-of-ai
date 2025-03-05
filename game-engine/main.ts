@@ -1,18 +1,20 @@
 import { Gemini } from "./lib/gemini";
+import { generateLettaResponse, InitializeLettaAgents } from "./lib/letta";
 import { WebSocketServer } from "./lib/websocket";
 
 async function main() {
-  console.log("Hello, World!");
+  console.log("-- Kingdom of AI Started --");
+
+  const agentId = await InitializeLettaAgents();
 
   const socket = WebSocketServer.getInstance();
 
-  const gemini = new Gemini();
-
   setInterval(async () => {
-    const response = await gemini.generateResponse(
-      "You are a funny person who likes to tell jokes. Give me a joke and make sure it will make me laugh also try to have a unique joke enverytime."
+    const responseMessage = await generateLettaResponse(
+      "Tell me a joke",
+      agentId
     );
-    socket.broadcastMessage(response);
+    socket.broadcastMessage(responseMessage);
   }, 5000);
 }
 

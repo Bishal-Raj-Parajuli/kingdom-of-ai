@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.23.0",
+    "@letta-ai/letta-client": "^0.1.48",
     "dotenv": "^16.4.7",
     "ws": "^8.18.1"
   }

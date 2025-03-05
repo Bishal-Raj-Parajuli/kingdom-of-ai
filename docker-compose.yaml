@@ -1,0 +1,12 @@
+services:
+  letta:
+    image: letta/letta:latest
+    ports:
+      - "8283:8283"
+    volumes:
+      - letta_data:/var/lib/postgresql/data
+    env_file:
+      - ./game-engine/.env
+
+volumes:
+  letta_data:
