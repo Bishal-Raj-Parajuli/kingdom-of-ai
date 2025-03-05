@@ -1,5 +1,3 @@
-Here's the README documentation in Markdown format:
-
 # Kingdom of AI
 
 ## Project Concept
