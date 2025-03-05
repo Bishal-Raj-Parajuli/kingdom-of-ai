@@ -6,16 +6,12 @@ import socket from "./lib/websocket";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [serverData, setServerData] = useState<{
-    title: string;
-    score: number;
-  } | null>(null);
+  const [serverData, setServerData] = useState<string | null>(null);
 
   const get_data = () => {
     socket.onmessage = (data) => {
-      const state = JSON.parse(data.data);
+      const state = data.data;
       setServerData(state);
-      setCount(state.score);
     };
   };
 
@@ -33,11 +29,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      {serverData ? (
-        <h1>{serverData.title}</h1>
-      ) : (
-        <h1>Waiting for server data...</h1>
-      )}
+      {serverData ? <h1>{serverData}</h1> : <h1>Waiting for server data...</h1>}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
